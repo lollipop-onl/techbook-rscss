@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "review"
+  ],
+  "filters": {
+    "whitelist": {
+      "allow": [
+        "/#@# textlint-disable[\\s\\S]*?#@# textlint-enable/m"
+      ]
+    }
+  },
+  "rules": {
+    "preset-ja-technical-writing": true
+  }
+}
