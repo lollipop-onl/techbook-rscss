@@ -1,5 +1,8 @@
+# @see https://github.com/kmuto/review/blob/master/lib/review/i18n.yml
 locale: ja
-chapter: '#%d'
+chapter: '%第d章'
+chapter_quote: "%s　%s"
+chapter_quote_without_number: "%s"
 column_head: ■コラム
 columnname: コラム
 memo_head: ■メモ
