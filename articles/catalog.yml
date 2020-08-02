@@ -4,6 +4,8 @@ PREDEF:
 CHAPS:
   - chap_about-rscss.re
   - chap_stylelint-rscss.re
+  - chap_scoped-css.re
+  - chap_css-modules.re
 
 APPENDIX:
 
