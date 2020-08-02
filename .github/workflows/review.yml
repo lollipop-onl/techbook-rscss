@@ -17,7 +17,7 @@ jobs:
     - name: Get output values
       id: output
       run: |
-        echo "::set-output name=date::$(date +"%Y-%m-%d")"
+        echo "::set-output name=date::$(date +"%Y%m%d")"
         echo "::set-output name=repo-name::${GITHUB_REPOSITORY##*/}"
         echo "::set-output name=commit-hash::${GITHUB_SHA:0:7}"
     # Upload Distribution file
