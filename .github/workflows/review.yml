@@ -1,34 +1,22 @@
-  
-name: Generate preview pdf
-on: push
+name: Build Re:VIEW to make distribution file
+# The workflow is triggered on pushes to the repository.
+on: [push]
 
 jobs:
   build:
-    name: Generate pdf
+    name: 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-      - id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-      - run: ls
-      - uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - uses: docker://vvakame/review:4.0
-      - run: ./build-in-docker.sh
-      - name: Get build date
-        id: get-date
-        run: echo "::set-output name=date::$(date +"%Y-%m-%d")"
-      - name: Get Repository Name
-        id: get-repo-name
-        run: echo "::set-output name=repo-name::${GITHUB_REPOSITORY##*/}"
-      - uses: actions/upload-artifact@master
-        with:
-          name: ${{ steps.get-repo-name.outputs.repo-name }}-${{ steps.get-date.outputs.date }}
-          path: articles/output.pdf
+    # uses v2 Stable version
+    # https://github.com/actions/checkout
+    - name: checkout source
+      uses: actions/checkout@v2
+    # Build Artifacts
+    - name: Build distribution file
+      uses: TechBooster/ReVIEW-build-artifact-action@master
+    # Upload Distribution file
+    - name: Upload distribution file to github artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Output documents
+        path: ./articles/*.pdf
