@@ -14,6 +14,8 @@ jobs:
     # Build Artifacts
     - name: Build distribution file
       uses: TechBooster/ReVIEW-build-artifact-action@master
+      env:
+        REIVIEW_CONFIG_FILE: config-ebook.yml
     # Upload Distribution file
     - name: Upload distribution file to github artifacts
       uses: actions/upload-artifact@v2
