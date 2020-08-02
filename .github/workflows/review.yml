@@ -14,15 +14,15 @@ jobs:
     # Build Artifacts
     - name: Build distribution file
       uses: TechBooster/ReVIEW-build-artifact-action@master
-    - name: Get build date
-      id: get-date
-      run: echo "::set-output name=date::$(date +"%Y-%m-%d")"
-    - name: Get Repository Name
-      id: get-repo-name
-      run: echo "::set-output name=repo-name::${GITHUB_REPOSITORY##*/}"
+    - name: Get output values
+      id: output
+      run: |
+        echo "::set-output name=date::$(date +"%Y-%m-%d")"
+        echo "::set-output name=repo-name::${GITHUB_REPOSITORY##*/}"
+        echo "::set-output name=commit-hash::${GITHUB_SHA:0:7}"
     # Upload Distribution file
     - name: Upload distribution file to github artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.get-repo-name.outputs.repo-name }}-${{ steps.get-date.outputs.date }}
+        name: ${{ steps.output.outputs.repo-name }}-${{ steps.output.outputs.date }}-${{ steps.output.outputs.commit-hash }}
         path: ./articles/*.pdf
