@@ -1,0 +1,34 @@
+  
+name: Generate preview pdf
+on: push
+
+jobs:
+  build:
+    name: Generate pdf
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - run: ls
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - uses: docker://vvakame/review:4.0
+      - run: ./build-in-docker.sh
+      - name: Get build date
+        id: get-date
+        run: echo "::set-output name=date::$(date +"%Y-%m-%d")"
+      - name: Get Repository Name
+        id: get-repo-name
+        run: echo "::set-output name=repo-name::${GITHUB_REPOSITORY##*/}"
+      - uses: actions/upload-artifact@master
+        with:
+          name: ${{ steps.get-repo-name.outputs.repo-name }}-${{ steps.get-date.outputs.date }}
+          path: articles/output.pdf
