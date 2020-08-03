@@ -2,16 +2,16 @@
 
 == 本書の構成
 
- : @<chap>{chap_about-rscss}　@<title>{chap_about-rscss}
+ : タイトルタイトル
     rscssの設計思想と命名規則について解説します。併せて、設計思想の類似するBEMとの比較や移行について、さらには具体的なマークアップ事例をご紹介します。
 
- : @<chap>{chap_stylelint-rscss}　@<title>{chap_stylelint-rscss}
+ : タイトルタイトル
     rscssの命名規則をstylelintで強制する方法や具体的なルールを解説します。
 
- : @<chap>{chap_scoped-css}　@<title>{chap_scoped-css}
+ : タイトルタイトル
     テキスト
 
- : @<chap>{chap_css-modules}　@<title>{chap_css-modules}
+ : タイトルタイトル
     テキスト
 
 == 対象読者
